@@ -3,7 +3,7 @@ module Enlace
     class Invoice < Entity
 
       DECIMALS = 2
-      CURRENCY = 'MNX'
+      CURRENCY = 'MXN'
 
       def_attributes :serie, :folio, :date, :subtotal, :total, :rfc,
         :tax_retained_total, :tax_translated_total
