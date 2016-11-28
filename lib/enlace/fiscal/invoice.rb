@@ -70,7 +70,7 @@ module Enlace
           'versionEF' => EF.version,
           'serie' => serie,
           'folioInterno' => folio,
-          'fechaEmision' => format_date(DateTime.now),
+          'fechaEmision' => format_date(DateTime.now.in_time_zone("America/Mexico_City")),
           'subTotal' => format_decimal(subtotal),
           'descuentos' => format_decimal(0),
           'total' => format_decimal(total),
