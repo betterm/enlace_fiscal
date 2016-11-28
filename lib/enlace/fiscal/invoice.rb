@@ -65,7 +65,7 @@ module Enlace
       end
 
       def to_h
-        {
+        back = {
           'modo' => EF.mode,
           'versionEF' => EF.version,
           'serie' => serie,
@@ -83,16 +83,18 @@ module Enlace
             'Partida' => lines.map{|line| line.to_h}
           },
           'Impuestos' => {
-            # 'totalImpuestosRetenidos' => format_decimal(tax_retained_total),
             'totalImpuestosTrasladados' => format_decimal(tax_translated_total),
-            # 'Retenciones' => {
-            #   'Retencion' => taxes.select{ |tax| tax.kind == :retained }.map{ |tax| tax.to_h }
-            # },
             'Traslados' => {
               'Traslado' => taxes.select{ |tax| tax.kind == :translated }.map{ |tax| tax.to_h }
             }
           }
         }
+        back['Impuestos']['totalImpuestosRetenidos'] = format_decimal(tax_retained_total) if tax_retained_total.present? && tax_retained_total.to_f > 0
+        if taxes.select{ |tax| tax.kind == :retained }.any?
+          back['Impuestos']['Retenciones'] = {}
+          back['Impuestos']['Retenciones']['Retencion'] = taxes.select{ |tax| tax.kind == :retained }.map{ |tax| tax.to_h }
+        end
+        back
       end
 
       private

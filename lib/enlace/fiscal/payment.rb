@@ -37,11 +37,12 @@ module Enlace
       end
 
       def to_h
-        {
+        back = {
           'metodoDePago' => PAYMENT_METHODS_LOOKUP[payment_method],
-          'numeroCuentaPago' => account_number,
           'formaDePago' => details
         }
+        back['numeroCuentaPago'] = account_number if account_number.present?
+        back
       end
 
       private

@@ -22,13 +22,12 @@ module Enlace
       end
 
       def to_h
-        {
+        back = {
           'rfc' => rfc,
           'nombre' => name,
           'DomicilioFiscal' => {
             'calle' => street,
             'noExterior' => ext_number,
-            'noInterior' => int_number,
             'colonia' => neighborhood,
             'localidad' => locality,
             'municipio' => municipality,
@@ -37,6 +36,8 @@ module Enlace
             'cp' => postal_code
           }
         }
+        back['noInterior'] = int_number if int_number.present?
+        back
       end
     end
   end
