@@ -88,6 +88,9 @@ module Enlace
             'Traslados' => {
               'Traslado' => taxes.select{ |tax| tax.kind == :translated }.map{ |tax| tax.to_h }
             }
+          },
+          'EnviarCFDi' => {
+              'correo' => receptor.emails
           }
         }
         back['Impuestos']['totalImpuestosRetenidos'] = format_decimal(tax_retained_total) if tax_retained_total.present? && tax_retained_total.to_f > 0

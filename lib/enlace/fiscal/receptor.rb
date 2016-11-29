@@ -3,7 +3,7 @@ module Enlace
     class Receptor < Entity
       def_attributes :name, :rfc, :street, :ext_number, :int_number,
         :neighborhood, :locality, :municipality, :state, :country,
-        :postal_code
+        :postal_code, :emails
 
       def initialize
         super
