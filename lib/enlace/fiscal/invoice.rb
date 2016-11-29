@@ -73,6 +73,7 @@ module Enlace
           'fechaEmision' => format_date(DateTime.now.in_time_zone("America/Mexico_City")),
           'subTotal' => format_decimal(subtotal),
           'descuentos' => format_decimal(0),
+          "nombreDisenio" => "EnviaYa con Logo",
           'total' => format_decimal(total),
           'numeroDecimales' => DECIMALS,
           'tipoMoneda' => CURRENCY,
