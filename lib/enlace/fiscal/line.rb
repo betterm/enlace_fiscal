@@ -4,8 +4,8 @@ module Enlace
       def_attributes :quantity, :unit, :sku, :description,
         :unit_price, :total
 
-      UNITS = [:piece, :na]
-      UNIT_LOOKUP = { piece: 'pieza', na: 'No aplica' }
+      # UNITS = [:piece, :na]
+      # UNIT_LOOKUP = { piece: 'pieza', na: 'No aplica' }
 
       def initialize
         super
@@ -18,7 +18,7 @@ module Enlace
 
         validate_required *(attributes - [:sku])
         validate_equal_or_less_than_zero :quantity, :unit_price
-        validate_option UNITS, :unit
+        # validate_option UNITS, :unit
 
         super
       end
@@ -26,7 +26,7 @@ module Enlace
       def to_h
         {
           'cantidad' => quantity,
-          'unidad' => UNIT_LOOKUP[unit],
+          'unidad' => unit,
           'descripcion' => description,
           'noIdentificacion' => sku,
           'valorUnitario' => format_decimal(unit_price),
