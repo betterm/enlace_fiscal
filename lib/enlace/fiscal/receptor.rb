@@ -36,7 +36,7 @@ module Enlace
             'cp' => postal_code
           }
         }
-        back['noInterior'] = int_number if int_number.present?
+        back['DomicilioFiscal']['noInterior'] = int_number if int_number.present?
         back
       end
     end
