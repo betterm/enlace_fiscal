@@ -21,7 +21,6 @@ module Enlace
       def initialize
         super
 
-        self.payment_method = :credit
         self.details = DETAILS_TEXT
       end
 
