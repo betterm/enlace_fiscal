@@ -21,22 +21,30 @@ module Enlace
         super
       end
 
+      def present_required_attrs?
+        street.present? && ext_number.present? && neighborhood.present? &&
+            locality.present? && municipality.present? && state.present? &&
+            country.present? && postal_code.present?
+      end
+
       def to_h
         back = {
           'rfc' => rfc,
-          'nombre' => name,
-          'DomicilioFiscal' => {
-            'calle' => street,
-            'noExterior' => ext_number,
-            'colonia' => neighborhood,
-            'localidad' => locality,
-            'municipio' => municipality,
-            'estado' => state,
-            'pais' => country,
-            'cp' => postal_code
-          }
+          'nombre' => name
         }
-        back['DomicilioFiscal']['noInterior'] = int_number if int_number.present?
+
+        if present_required_attrs?
+          back['DomicilioFiscal'] = {}
+          back['DomicilioFiscal']['calle'] = street if street.present?
+          back['DomicilioFiscal']['noExterior'] = ext_number if ext_number.present?
+          back['DomicilioFiscal']['colonia'] = neighborhood if neighborhood.present?
+          back['DomicilioFiscal']['localidad'] = locality if locality.present?
+          back['DomicilioFiscal']['municipio'] = municipality if municipality.present?
+          back['DomicilioFiscal']['estado'] = state if state.present?
+          back['DomicilioFiscal']['pais'] = country if country.present?
+          back['DomicilioFiscal']['cp'] = postal_code if postal_code.present?
+          back['DomicilioFiscal']['noInterior'] = int_number if int_number.present?
+        end
         back
       end
     end
