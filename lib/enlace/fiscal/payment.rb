@@ -6,16 +6,17 @@ module Enlace
       def_attributes :payment_method, :account_number, :details
       DETAILS_TEXT = 'Pago en una sóla exhibición'
       PAYMENT_METHODS = [:credit, :debit, :electronic_transfer, :cash,
-                         :check, :unknown, :services]
+                         :check, :unknown, :services, :other]
 
       PAYMENT_METHODS_LOOKUP = {
         unknown: 'No identificado',
         cash: 'Efectivo',
         electronic_transfer: 'Transferencia Electrónica',
-        check: 'Cheque',
+        check: 'Cheque nominativo',
         credit: 'Tarjeta de Crédito',
         debit: 'Tarjeta de Débito',
-        services: 'Tarjeta de Servicios'
+        services: 'Tarjeta de Servicios',
+        other: 'Otros'
       }
 
       def initialize
