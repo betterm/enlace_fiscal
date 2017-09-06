@@ -6,7 +6,7 @@ module Enlace
       CURRENCY = 'MXN'
 
       def_attributes :serie, :folio, :date, :subtotal, :total, :rfc,
-        :tax_retained_total, :tax_translated_total
+        :tax_retained_total, :tax_translated_total, :discount
 
       has_one :payment, :receptor
       has_many :lines, :taxes
@@ -72,7 +72,7 @@ module Enlace
           'folioInterno' => folio,
           'fechaEmision' => format_date(DateTime.now.in_time_zone("America/Mexico_City") - 5.minutes),
           'subTotal' => format_decimal(subtotal),
-          'descuentos' => format_decimal(0),
+          'descuentos' => format_decimal(discount),
           "nombreDisenio" => "EnviaYa con Logo",
           'total' => format_decimal(total),
           'numeroDecimales' => DECIMALS,
