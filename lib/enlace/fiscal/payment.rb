@@ -9,15 +9,29 @@ module Enlace
       PAYMENT_METHODS = [:credit, :debit, :electronic_transfer, :cash,
                          :check, :unknown, :services, :other]
 
+      # https://developer.enlacefiscal.com/#forma-de-pago
       PAYMENT_METHODS_LOOKUP = {
-        unknown: 'No identificado',
-        cash: 'Efectivo',
-        electronic_transfer: 'Transferencia Electrónica',
-        check: 'Cheque nominativo',
-        credit: 'Tarjeta de Crédito',
-        debit: 'Tarjeta de Débito',
-        services: 'Tarjeta de Servicios',
-        other: 'Otros'
+        unknown: 'NA',
+        cash: '01',
+        electronic_transfer: '03',
+        check: '02',
+        credit: '04',
+        debit: '28',
+        services: '29',
+        other: '99',
+        monedero: '05',
+        dinero_electronico: '06',
+        vales: '08',
+        dacion: '12',
+        pago_subrogacion: '13',
+        pago_consignacion: '14',
+        condonacion: '15', compensacion: '17',
+        novacion: '23',
+        confusion: '24',
+        remision: '25',
+        prescripcion: '26',
+        satisfaccion_acreedor: '27',
+        aplicacion_anticipos: '30'
       }
 
       def initialize
