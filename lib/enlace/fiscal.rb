@@ -45,7 +45,7 @@ module Enlace
     end
 
     def self.version
-      @@version ||= '5.0'
+      @@version ||= '6.0'
     end
   end
 end

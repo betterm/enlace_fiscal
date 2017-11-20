@@ -25,10 +25,18 @@ module Enlace
       end
 
       def to_h
+        # {
+        #   'impuesto' => type.to_s.upcase,
+        #   'tasa' => format_decimal(rate),
+        #   'importe' => format_decimal(total)
+        # }
+
         {
-          'impuesto' => type.to_s.upcase,
-          'tasa' => format_decimal(rate),
-          'importe' => format_decimal(total)
+          "tipo" => 'traslado',
+          "claveImpuesto" => type.to_s.upcase,
+          "tipoFactor" => "tasa",
+          "tasaOCuota" => format_decimal(rate),
+          "importe" => format_decimal(total)
         }
       end
     end

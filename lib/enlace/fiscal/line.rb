@@ -24,13 +24,32 @@ module Enlace
       end
 
       def to_h
+        # {
+        #   'cantidad' => quantity,
+        #   'unidad' => unit,
+        #   'descripcion' => description,
+        #   'noIdentificacion' => sku,
+        #   'valorUnitario' => format_decimal(unit_price),
+        #   'importe' => format_decimal(total)
+        # }
+
         {
-          'cantidad' => quantity,
-          'unidad' => unit,
-          'descripcion' => description,
-          'noIdentificacion' => sku,
-          'valorUnitario' => format_decimal(unit_price),
-          'importe' => format_decimal(total)
+          "cantidad" => quantity,
+          "claveUnidad" => unit,
+          "claveProdServ" => sku,
+          "descripcion" => description,
+          "valorUnitario" => format_decimal(unit_price),
+          "importe" => format_decimal(total),
+          "Impuestos" => [
+            {
+              "tipo" => "traslado",
+              "claveImpuesto" => "IVA",
+              "tipoFactor" => "tasa",
+              "tasaOCuota" => "0.16",
+              "baseImpuesto" => format_decimal(total),
+              "importe" => format_decimal(total * 0.16)
+            }
+          ]
         }
       end
     end

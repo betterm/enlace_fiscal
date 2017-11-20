@@ -83,12 +83,18 @@ module Enlace
           'Partidas' => {
             'Partida' => lines.map{|line| line.to_h}
           },
-          'Impuestos' => {
-            'totalImpuestosTrasladados' => format_decimal(tax_translated_total),
-            'Traslados' => {
-              'Traslado' => taxes.select{ |tax| tax.kind == :translated }.map{ |tax| tax.to_h }
-            }
-          },
+          "Impuestos" => {
+            "Totales" => {
+              "traslados" => format_decimal(tax_translated_total)
+            },
+            "Impuestos" => taxes.select{ |tax| tax.kind == :translated }.map{ |tax| tax.to_h }
+          }
+          # 'Impuestos' => {
+          #   'totalImpuestosTrasladados' => format_decimal(tax_translated_total),
+          #   'Traslados' => {
+          #     'Traslado' => taxes.select{ |tax| tax.kind == :translated }.map{ |tax| tax.to_h }
+          #   }
+          # },
         }
         back['Impuestos']['totalImpuestosRetenidos'] = format_decimal(tax_retained_total) if tax_retained_total.present? && tax_retained_total.to_f > 0
 

@@ -5,6 +5,7 @@ module Enlace
 
       def_attributes :payment_method, :account_number, :details
       DETAILS_TEXT = 'Pago en una sóla exhibición'
+      PAYMENT_METHOD_PUE = 'PUE'
       PAYMENT_METHODS = [:credit, :debit, :electronic_transfer, :cash,
                          :check, :unknown, :services, :other]
 
@@ -38,8 +39,8 @@ module Enlace
 
       def to_h
         back = {
-          'metodoDePago' => PAYMENT_METHODS_LOOKUP[payment_method],
-          'formaDePago' => details
+          'metodoDePago' => PAYMENT_METHOD_PUE,
+          'formaDePago' => PAYMENT_METHODS_LOOKUP[payment_method]
         }
         back['numeroCuentaPago'] = account_number if account_number.present?
         back
