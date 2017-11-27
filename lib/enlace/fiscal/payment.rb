@@ -11,7 +11,7 @@ module Enlace
 
       # https://developer.enlacefiscal.com/#forma-de-pago
       PAYMENT_METHODS_LOOKUP = {
-        unknown: 'NA',
+        unknown: '99',
         cash: '01',
         electronic_transfer: '03',
         check: '02',
