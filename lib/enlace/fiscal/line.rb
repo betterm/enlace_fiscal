@@ -35,8 +35,9 @@ module Enlace
 
         {
           "cantidad" => quantity,
-          "claveUnidad" => unit,
-          "claveProdServ" => sku,
+          "claveUnidad" => 'E48',
+          "claveProdServ" => "78102200",
+          # "claveProdServ" => sku,
           "descripcion" => description,
           "valorUnitario" => format_decimal(unit_price),
           "importe" => format_decimal(total),
