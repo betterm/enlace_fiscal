@@ -80,7 +80,9 @@ module Enlace
           'rfc' => rfc,
           'DatosDePago' => payment.to_h,
           'Receptor' => receptor.to_h,
-          'Partidas' => lines.map { |line| line.to_h },
+          'Partidas' => {
+            'Partida' => lines.map{|line| line.to_h}
+          },
           'Impuestos' => {
             'totalImpuestosTrasladados' => format_decimal(tax_translated_total),
             'Traslados' => {
