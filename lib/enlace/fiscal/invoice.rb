@@ -72,7 +72,6 @@ module Enlace
           'folioInterno' => folio,
           'fechaEmision' => format_date(DateTime.now.in_time_zone("America/Mexico_City") - 5.minutes),
           'subTotal' => format_decimal(subtotal),
-          'descuentos' => format_decimal(discount),
           'total' => format_decimal(total),
           # 'numeroDecimales' => DECIMALS,
           'tipoMoneda' => CURRENCY,
@@ -95,6 +94,10 @@ module Enlace
           # },
         }
         back['Impuestos']['totalImpuestosRetenidos'] = format_decimal(tax_retained_total) if tax_retained_total.present? && tax_retained_total.to_f > 0
+
+        if discount.to_f > 0
+          back['descuentos'] = format_decimal(discount)
+        end
 
         if receptor.emails
           back['EnviarCFDi'] = {}
