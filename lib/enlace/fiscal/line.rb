@@ -23,6 +23,11 @@ module Enlace
         super
       end
 
+      def sanitize
+        total = total.to_f.round(2)
+        unit_price = unit_price.to_f.round(2)
+      end
+
       def to_h
         # {
         #   'cantidad' => quantity,
@@ -32,7 +37,7 @@ module Enlace
         #   'valorUnitario' => format_decimal(unit_price),
         #   'importe' => format_decimal(total)
         # }
-
+        sanitize
         {
           "cantidad" => quantity,
           "claveUnidad" => 'E48',

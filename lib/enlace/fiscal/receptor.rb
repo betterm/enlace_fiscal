@@ -28,7 +28,7 @@ module Enlace
       end
 
       def to_h
-        back = { 'rfc' => rfc, 'nombre' => name, 'usoCfdi' => 'adquisicion_mercancias' }
+        back = { 'rfc' => rfc, 'nombre' => name, 'usoCfdi' => 'por_definir' }
 
         if present_required_attrs?
           back['DomicilioFiscal'] = {}
