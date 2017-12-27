@@ -6,7 +6,7 @@ module Enlace
       CURRENCY = 'MXN'
 
       def_attributes :serie, :folio, :date, :subtotal, :total, :rfc,
-        :tax_retained_total, :tax_translated_total, :discount
+        :tax_retained_total, :tax_translated_total, :discount, :action, :cancellation_reason
 
       has_one :payment, :receptor
       has_many :lines, :taxes
@@ -64,6 +64,21 @@ module Enlace
         @errors.empty?
       end
 
+      def to_cancel_invoice_hash
+        {
+            "Solicitud" => {
+              "modo" => EF.mode,
+              "rfc" => rfc,
+              "accion" => action,
+              "CFDi" => {
+                "serie" => serie,
+                "folio" => folio,
+                "justificacion" => cancellation_reason
+              }
+          }
+        }
+      end
+
       def to_h
         back = {
           'modo' => EF.mode,
@@ -112,6 +127,7 @@ module Enlace
       end
 
       private
+
       def add_relation_errors(relation_name, value, index = nil)
         value.valid?
 
