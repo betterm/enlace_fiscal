@@ -53,7 +53,7 @@ module Enlace
               "tipoFactor" => "tasa",
               "tasaOCuota" => "0.16",
               "baseImpuesto" => format_decimal(total),
-              "importe" => format_decimal(total * 0.16)
+              "importe" => format_decimal((total * 0.16).round(3).round(2))
             }
           ]
         }
