@@ -35,7 +35,7 @@ module Enlace
           "tipo" => 'traslado',
           "claveImpuesto" => type.to_s.upcase,
           "tipoFactor" => "tasa",
-          "tasaOCuota" => format_decimal(rate > 1 ? (rate / 100) : rate),
+          "tasaOCuota" => format_decimal(rate.to_f > 1 ? (rate.to_f / 100) : rate.to_f),
           "importe" => format_decimal(total)
         }
       end

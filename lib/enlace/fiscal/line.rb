@@ -51,7 +51,7 @@ module Enlace
               "tipo" => "traslado",
               "claveImpuesto" => "IVA",
               "tipoFactor" => "tasa",
-              "tasaOCuota" => vat_rate,
+              "tasaOCuota" => format_decimal(vat_rate.to_f > 1 ? vat_rate.to_f / 100 : vat_rate.to_f),
               "baseImpuesto" => format_decimal(total),
               "importe" => format_decimal(vat_amount)
             }
