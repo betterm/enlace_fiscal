@@ -2,7 +2,7 @@ module Enlace
   module Fiscal
     class Line < Entity
       def_attributes :quantity, :unit, :sku, :description,
-        :unit_price, :total
+        :unit_price, :total, :vat_rate, :vat_amount
 
       # UNITS = [:piece, :na]
       # UNIT_LOOKUP = { piece: 'pieza', na: 'No aplica' }
@@ -51,9 +51,9 @@ module Enlace
               "tipo" => "traslado",
               "claveImpuesto" => "IVA",
               "tipoFactor" => "tasa",
-              "tasaOCuota" => "0.16",
+              "tasaOCuota" => vat_rate,
               "baseImpuesto" => format_decimal(total),
-              "importe" => format_decimal((total * 0.16).round(3).round(2))
+              "importe" => format_decimal(vat_amount)
             }
           ]
         }
