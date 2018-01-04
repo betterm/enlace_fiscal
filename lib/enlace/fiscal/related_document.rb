@@ -4,7 +4,7 @@ module Enlace
 			using Enlace::Fiscal::Blank
 
 			def_attributes :uuid, :serie, :folio, :payment_method, :parts_number,
-			               :currency, :balance_before, :amount, :balance_after
+			               :currency, :balance_before, :amount, :balance_after, :exchange_rate
 
 			PAYMENT_METHOD_PPD = 'PPD'
 			PAYMENT_METHODS = [:credit, :debit, :electronic_transfer, :cash,
