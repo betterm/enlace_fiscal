@@ -60,7 +60,7 @@ module Enlace
         back = {
           "Pago" => {
             "fechaPago" => date,
-            "formaDePago" => PAYMENT_METHODS_LOOKUP[payment_method],
+            "formaDePago" => payment_method,
             "tipoMoneda" => currency,
             "monto" => amount,
             "DocumentosRelacionados" => @related_documents.map(&:to_h)
