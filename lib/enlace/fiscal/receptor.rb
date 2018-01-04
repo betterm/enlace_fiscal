@@ -3,7 +3,7 @@ module Enlace
     class Receptor < Entity
       def_attributes :name, :rfc, :street, :ext_number, :int_number,
         :neighborhood, :locality, :municipality, :state, :country,
-        :postal_code, :emails
+        :postal_code, :emails, :usoCfdi
 
       def initialize
         super
@@ -27,8 +27,17 @@ module Enlace
             country.present? && postal_code.present?
       end
 
+      def to_payment_receipt_h
+        back = {
+          "rfc" => rfc,
+          "nombre" => name,
+          "usoCfdi" => usoCfdi
+        }
+        back
+      end
+
       def to_h
-        back = { 'rfc' => rfc, 'nombre' => name, 'usoCfdi' => 'por_definir' }
+        back = { 'rfc' => rfc, 'nombre' => name, 'usoCfdi' => usoCfdi.present? ? usoCfdi : 'por_definir' }
 
         if present_required_attrs?
           back['DomicilioFiscal'] = {}

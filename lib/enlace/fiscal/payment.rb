@@ -3,7 +3,10 @@ module Enlace
     class Payment < Entity
       using Enlace::Fiscal::Blank
 
-      def_attributes :payment_method, :account_number, :details
+      def_attributes :payment_method, :account_number, :details, :date, :currency, :amount
+
+      has_many :related_documents
+
       DETAILS_TEXT = 'Pago en una sóla exhibición'
       PAYMENT_METHOD_PUE = 'PUE'
       PAYMENT_METHODS = [:credit, :debit, :electronic_transfer, :cash,
@@ -38,6 +41,7 @@ module Enlace
         super
 
         self.details = DETAILS_TEXT
+        @related_documents = []
       end
 
       def valid?
@@ -45,10 +49,24 @@ module Enlace
 
         validate_required *(attributes - [:account_number])
         validate_option PAYMENT_METHODS, :payment_method
+        validate_less_than_zero :amount
 
         add_error(:account_number, "can't be blank") if account_number_required?
 
         super
+      end
+
+      def to_payment_receipt_h
+        back = {
+          "Pago" => {
+            "fechaPago" => date,
+            "formaDePago" => PAYMENT_METHODS_LOOKUP[payment_method],
+            "tipoMoneda" => currency,
+            "monto" => amount,
+            "DocumentosRelacionados" => @related_documents.map(&:to_h)
+          }
+        }
+        back
       end
 
       def to_h
@@ -61,6 +79,7 @@ module Enlace
       end
 
       private
+
       def account_number_required?
         required = (PAYMENT_METHODS - [:cash]).include?(self.payment_method)
         return true if self.account_number.blank? && required

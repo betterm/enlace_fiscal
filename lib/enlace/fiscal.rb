@@ -15,6 +15,8 @@ module Enlace
     autoload :Invoice,  'enlace/fiscal/invoice'
     autoload :Entity,  'enlace/fiscal/entity'
     autoload :Version,  'enlace/fiscal/version'
+    autoload :PaymentReceipt,  'enlace/fiscal/payment_receipt'
+    autoload :RelatedDocument,  'enlace/fiscal/related_document'
 
     def self.username
       @@username ||= ''
